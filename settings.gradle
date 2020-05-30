@@ -8,3 +8,9 @@
  */
 
 rootProject.name = 'hello-xtext'
+
+include ':drkstr.hello.xtext.words'
+include ':drkstr.hello.xtext.words.ide'
+include ':drkstr.hello.xtext.words.tests'
+include ':drkstr.hello.xtext.words.ui'
+include ':drkstr.hello.xtext.words.ui.tests'
