@@ -29,6 +29,7 @@ hs_err_pid*
 build
 
 */bin
+*/test-bin
 */xtend-gen
 */src-gen
 *.xml_gen
