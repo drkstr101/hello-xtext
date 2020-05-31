@@ -1,0 +1,23 @@
+grammar drkstr.hello.xtext.table.Table with drkstr.hello.xtext.words.Words
+
+import "http://www.hello.drkstr/xtext/words/Words"
+generate table "http://www.hello.drkstr/xtext/table/Table"
+
+TableModel:
+	narrative=Narrative?
+	Table=Table?
+;
+
+Narrative:
+	(WordLiteral WordLiteral* EOL+)+
+;
+
+Table:
+	(rows+=TABLE_ROW EOL)+
+;
+
+terminal TABLE_ROW: 
+	'|' (TABLE_CELL '|')+
+;
+
+terminal TABLE_CELL: !('|' | '\n' | '\r')*;
