@@ -1,6 +1,6 @@
-grammar drkstr.hello.xtext.table.Table with drkstr.hello.xtext.words.Words
+grammar drkstr.hello.xtext.table.Table  hidden(WS)
 
-import "http://www.hello.drkstr/xtext/words/Words"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 generate table "http://www.hello.drkstr/xtext/table/Table"
 
 TableModel:
@@ -10,6 +10,15 @@ TableModel:
 
 Narrative:
 	(WordLiteral WordLiteral* EOL)+
+;
+
+WordLiteral: WORD 
+	| ANY_OTHER
+;
+	
+terminal WORD: 
+	(LETTER | DIGIT)
+	(LETTER | DIGIT | '_' | '-' | '.' )*
 ;
 
 Table:
@@ -26,3 +35,13 @@ TableCol: {TableCol}
 ;
 
 terminal TABLE_CELL: !('|' | '\n' | '\r')* '|';
+
+terminal EOL: ('\r'? '\n')+;
+
+terminal WS: (' ' | '\t');
+
+terminal ANY_OTHER: .;
+
+terminal fragment DIGIT: ('0'..'9');
+
+terminal fragment LETTER: ('a'..'z') | ('A'..'Z');

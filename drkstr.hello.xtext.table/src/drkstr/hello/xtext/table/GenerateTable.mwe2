@@ -33,18 +33,24 @@ Workflow {
 		language = StandardLanguage {
 			name = "drkstr.hello.xtext.table.Table"
 			fileExtensions = "table"
-			referencedResource = "platform:/resource/drkstr.hello.xtext.words/model/generated/Words.genmodel"
 
 			serializer = {
-				generateStub = false
+				generateStub = true
 			}
 			validator = {
 				// composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
-				// Generates checks for @Deprecated grammar annotations, an IssueProvider and a corresponding PropertyPage
 				generateDeprecationValidation = true
 			}
-			generator = {
+			formatter = {
+				generateStub = true
 				generateXtendStub = true
+			}
+			generator = {
+				generateStub = true
+				generateXtendStub = true
+			}
+			parserGenerator = {
+				debugGrammar = true
 			}
 		}
 	}

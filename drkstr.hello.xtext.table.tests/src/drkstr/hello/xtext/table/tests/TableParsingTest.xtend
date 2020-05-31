@@ -22,6 +22,8 @@ class TableParsingTest {
 	def void loadModel() {
 		val result = parseHelper.parse('''
 			Hello Xtext!
+			|alpha|
+			|beta|
 		''')
 		Assert.assertNotNull(result)
 		val errors = result.eResource.errors
