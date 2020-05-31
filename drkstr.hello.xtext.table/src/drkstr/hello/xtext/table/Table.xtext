@@ -9,15 +9,20 @@ TableModel:
 ;
 
 Narrative:
-	(WordLiteral WordLiteral* EOL+)+
+	(WordLiteral WordLiteral* EOL)+
 ;
 
 Table:
-	(rows+=TABLE_ROW EOL)+
+	rows+=TableRow+
 ;
 
-terminal TABLE_ROW: 
-	'|' (TABLE_CELL '|')+
+TableRow: {TableRow}
+	'|' cols+=TableCol
+	EOL
 ;
 
-terminal TABLE_CELL: !('|' | '\n' | '\r')*;
+TableCol: {TableCol}
+	TABLE_CELL
+;
+
+terminal TABLE_CELL: !('|' | '\n' | '\r')* '|';

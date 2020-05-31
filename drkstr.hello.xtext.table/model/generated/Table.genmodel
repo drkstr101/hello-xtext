@@ -11,7 +11,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Table.ecore#//TableModel/Table"/>
     </genClasses>
     <genClasses ecoreClass="Table.ecore#//Table">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Table.ecore#//Table/rows"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Table.ecore#//Table/rows"/>
     </genClasses>
+    <genClasses ecoreClass="Table.ecore#//TableRow">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Table.ecore#//TableRow/cols"/>
+    </genClasses>
+    <genClasses ecoreClass="Table.ecore#//TableCol"/>
   </genPackages>
 </genmodel:GenModel>
