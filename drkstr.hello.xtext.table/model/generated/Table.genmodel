@@ -6,10 +6,6 @@
     complianceLevel="8.0" copyrightFields="false" runtimeVersion="2.20">
   <genPackages prefix="Table" basePackage="drkstr.hello.xtext.table" disposableProviderFactory="true"
       fileExtensions="table" ecorePackage="Table.ecore#/">
-    <genClasses ecoreClass="Table.ecore#//TableModel">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Table.ecore#//TableModel/narrative"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Table.ecore#//TableModel/Table"/>
-    </genClasses>
     <genClasses ecoreClass="Table.ecore#//Table">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Table.ecore#//Table/rows"/>
     </genClasses>

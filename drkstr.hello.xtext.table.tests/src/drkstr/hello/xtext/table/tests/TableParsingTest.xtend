@@ -4,7 +4,7 @@
 package drkstr.hello.xtext.table.tests
 
 import com.google.inject.Inject
-import drkstr.hello.xtext.table.table.TableModel
+import drkstr.hello.xtext.table.table.Table
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
 import org.eclipse.xtext.testing.util.ParseHelper
@@ -16,14 +16,12 @@ import org.junit.runner.RunWith
 @InjectWith(TableInjectorProvider)
 class TableParsingTest {
 	@Inject
-	ParseHelper<TableModel> parseHelper
+	ParseHelper<Table> parseHelper
 	
 	@Test
 	def void loadModel() {
 		val result = parseHelper.parse('''
-			Hello Xtext!
-			|alpha|
-			|beta|
+			| Hello, Tables! |
 		''')
 		Assert.assertNotNull(result)
 		val errors = result.eResource.errors
