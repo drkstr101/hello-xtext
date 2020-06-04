@@ -8,9 +8,11 @@ import drkstr.hello.xtext.table.table.Table
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
 import org.eclipse.xtext.testing.util.ParseHelper
-import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
+
+import static org.hamcrest.Matchers.*
+import static org.hamcrest.MatcherAssert.*
 
 @RunWith(XtextRunner)
 @InjectWith(TableInjectorProvider)
@@ -20,11 +22,11 @@ class TableParsingTest {
 	
 	@Test
 	def void loadModel() {
-		val result = parseHelper.parse('''
-			| Hello, Tables! |
+		val model = parseHelper.parse('''
+			| Hello | Tables! |
 		''')
-		Assert.assertNotNull(result)
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: «errors.join(", ")»''', errors.isEmpty)
+		
+		assertThat(model, notNullValue())
+		assertThat(model.eResource.errors, empty())
 	}
 }
