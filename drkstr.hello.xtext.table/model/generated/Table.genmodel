@@ -12,6 +12,8 @@
     <genClasses ecoreClass="Table.ecore#//TableRow">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Table.ecore#//TableRow/cols"/>
     </genClasses>
-    <genClasses ecoreClass="Table.ecore#//TableCol"/>
+    <genClasses ecoreClass="Table.ecore#//TableCol">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Table.ecore#//TableCol/cell"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

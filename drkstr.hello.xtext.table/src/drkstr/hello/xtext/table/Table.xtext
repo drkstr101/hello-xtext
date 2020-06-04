@@ -8,16 +8,15 @@ Table:
 ;
 
 TableRow: {TableRow}
-	'|' cols+=TableCol
-	EOL
+	cols+=TableCol+ '|' EOL
 ;
 
 TableCol: {TableCol}
-	TABLE_CELL
+	cell=TABLE_CELL
 ;
 
-terminal TABLE_CELL: !('|' | '\n' | '\r')* '|';
+terminal TABLE_CELL: '|' !('|' | '\n' | '\r')*;
 
-terminal EOL: ('\r'? '\n');
+terminal EOL: ('\r'? '\n')+;
 
 terminal WS: (' ' | '\t');
