@@ -3,6 +3,9 @@
  */
 package drkstr.hello.xtext.natural.generator
 
+import drkstr.hello.xtext.natural.natural.Model
+import drkstr.hello.xtext.natural.natural.Scenario
+import drkstr.hello.xtext.natural.natural.Step
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
@@ -16,10 +19,23 @@ import org.eclipse.xtext.generator.IGeneratorContext
 class NaturalGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+		fsa.generateFile(resource.getURI().toString(), serialize(resource.contents.head as Model))
 	}
+
+	static def serialize(Model model) '''
+		«FOR s : model.scenarios»
+			«serialize(s)»
+		«ENDFOR»
+	'''
+
+	static def serialize(Scenario model) '''
+		Scenario: «model.title»
+		«FOR s : model.steps»
+			«serialize(s)»
+		«ENDFOR»
+	'''
+
+	static def serialize(Step model) '''
+		«model.keyword» «model.description»
+	'''
 }
