@@ -9,14 +9,13 @@ Model:
 	
 Scenario: {Scenario}
 	'Scenario:' title=Text? EOL
-	(steps+=Step)
-	(EOL steps+=Step)*
-	EOL
+	steps+=Step*
 ;
 
 Step:
 	keyword=STEP_KEYWORD
 	description=Text
+	EOL
 ;
 
 STEP_KEYWORD: ANY_KEYWORD
