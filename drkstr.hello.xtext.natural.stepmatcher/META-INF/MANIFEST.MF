@@ -8,3 +8,4 @@ Require-Bundle: org.eclipse.core.runtime
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: drkstr.hello.xtext.natural.stepmatcher
 Bundle-ActivationPolicy: lazy
+Export-Package: drkstr.hello.xtext.natural.stepmatcher;uses:="org.osgi.framework"

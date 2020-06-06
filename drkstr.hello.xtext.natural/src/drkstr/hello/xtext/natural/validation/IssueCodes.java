@@ -15,6 +15,10 @@ public class IssueCodes {
 
 	public static IssueCode MISSING_SCENARIO_STEPS = new IssueCode("MissingScenarioSteps", "No steps defined for Scenario(%s).");
 	
+	public static IssueCode MISSING_STEPDEF = new IssueCode("MissingStepdef", "No step definitions found for Step: %s %s.");
+	
+	public static IssueCode MULTIPLE_STEPDEF = new IssueCode("MultipleStepdefs", "Multiple step definitions found for Step: %s %s.");
+	
 	public static class IssueCode {
 		private String id;
 		private String msg;

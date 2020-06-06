@@ -18,7 +18,7 @@ Require-Bundle: drkstr.hello.xtext.natural.stepmatcher;bundle-version="1.0.0",
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: drkstr.hello.xtext.natural;uses:="com.google.inject,org.eclipse.xtext.service,org.eclipse.xtext",
  drkstr.hello.xtext.natural.formatting2;uses:="drkstr.hello.xtext.natural.natural,org.eclipse.xtext.formatting2",
- drkstr.hello.xtext.natural.generator;uses:="org.eclipse.xtext.generator,org.eclipse.emf.ecore.resource",
+ drkstr.hello.xtext.natural.generator;uses:="drkstr.hello.xtext.natural.natural,org.eclipse.xtext.generator,org.eclipse.emf.ecore.resource",
  drkstr.hello.xtext.natural.natural;uses:="org.eclipse.emf.ecore,org.eclipse.emf.common.util",
  drkstr.hello.xtext.natural.natural.impl;
   uses:="org.eclipse.emf.ecore,
@@ -48,6 +48,6 @@ Export-Package: drkstr.hello.xtext.natural;uses:="com.google.inject,org.eclipse.
    org.eclipse.xtext.serializer.sequencer,
    org.eclipse.xtext,
    org.eclipse.xtext.serializer",
- drkstr.hello.xtext.natural.services;uses:="org.eclipse.xtext.common.services,org.eclipse.xtext.service,org.eclipse.xtext",
+ drkstr.hello.xtext.natural.services;uses:="org.eclipse.xtext.service,org.eclipse.xtext",
  drkstr.hello.xtext.natural.validation;uses:="org.eclipse.xtext.util,org.eclipse.xtext.validation"
 Import-Package: org.apache.log4j

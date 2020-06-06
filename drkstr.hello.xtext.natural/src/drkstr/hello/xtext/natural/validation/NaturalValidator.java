@@ -3,17 +3,25 @@
  */
 package drkstr.hello.xtext.natural.validation;
 
-import static drkstr.hello.xtext.natural.natural.NaturalPackage.Literals.MODEL__SCENARIOS;
 import static drkstr.hello.xtext.natural.natural.NaturalPackage.Literals.SCENARIO__STEPS;
 import static drkstr.hello.xtext.natural.natural.NaturalPackage.Literals.SCENARIO__TITLE;
-import static drkstr.hello.xtext.natural.validation.IssueCodes.MISSING_SCENARIOS;
+import static drkstr.hello.xtext.natural.natural.NaturalPackage.Literals.STEP__DESCRIPTION;
 import static drkstr.hello.xtext.natural.validation.IssueCodes.MISSING_SCENARIO_STEPS;
 import static drkstr.hello.xtext.natural.validation.IssueCodes.MISSING_SCENARIO_TITLE;
+import static drkstr.hello.xtext.natural.validation.IssueCodes.MISSING_STEPDEF;
+import static drkstr.hello.xtext.natural.validation.IssueCodes.MULTIPLE_STEPDEF;
+
+import java.util.List;
 
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.CheckType;
 
-import drkstr.hello.xtext.natural.natural.Model;
+import com.google.inject.Inject;
+
 import drkstr.hello.xtext.natural.natural.Scenario;
+import drkstr.hello.xtext.natural.natural.Step;
+import drkstr.hello.xtext.natural.stepmatcher.IStepMatcher;
+import drkstr.hello.xtext.natural.stepmatcher.StepdefMatch;
 
 /**
  * This class contains custom validation rules.
@@ -23,6 +31,9 @@ import drkstr.hello.xtext.natural.natural.Scenario;
  */
 public class NaturalValidator extends AbstractNaturalValidator {
 
+	@Inject
+	private IStepMatcher stepMatcher;
+	
 //	@Check
 //	public void missingScenarios(Model model) {
 //		if (model.getScenarios().isEmpty()) {
@@ -42,6 +53,23 @@ public class NaturalValidator extends AbstractNaturalValidator {
 	public void missingScenarioTitle(Scenario model) {
 		if (model.getTitle() == null || model.getTitle().trim() == "") {
 			warning(MISSING_SCENARIO_TITLE.message(), model, SCENARIO__TITLE, MISSING_SCENARIO_TITLE.id());
+		}
+	}
+	
+	@Check(CheckType.NORMAL)
+	public void invalidStepdef(Step model) {
+		List<StepdefMatch> matches = stepMatcher.findMatches(model.getKeyword(), model.getDescription());
+		if (matches.size() == 0) {
+			warning(MISSING_STEPDEF.message(model.getKeyword(), 
+					model.getDescription()),
+					STEP__DESCRIPTION, 
+					MISSING_STEPDEF.id());
+		}
+		else if (matches.size() > 1) {
+			warning(MULTIPLE_STEPDEF.message(model.getKeyword(), 
+					model.getDescription()),
+					STEP__DESCRIPTION, 
+					MULTIPLE_STEPDEF.id());
 		}
 	}
 
