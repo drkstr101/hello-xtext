@@ -21,7 +21,12 @@ class NaturalParsingTest {
 	@Test
 	def void loadModel() {
 		val result = parseHelper.parse('''
-			Hello Xtext!
+			Scenario: Hello Xtext!
+				Given a precondition
+				When something happens
+				Then there should be a result
+				And it should be correct
+				* because I said so
 		''')
 		Assert.assertNotNull(result)
 		val errors = result.eResource.errors
