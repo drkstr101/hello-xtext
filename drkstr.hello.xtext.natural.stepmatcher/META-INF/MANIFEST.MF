@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Stepmatcher
+Bundle-SymbolicName: drkstr.hello.xtext.natural.stepmatcher
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: drkstr.hello.xtext.natural.stepmatcher.Activator
+Require-Bundle: org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: drkstr.hello.xtext.natural.stepmatcher
+Bundle-ActivationPolicy: lazy
