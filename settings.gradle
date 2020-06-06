@@ -9,6 +9,11 @@
 
 rootProject.name = 'hello-xtext'
 
+include ':drkstr.hello.xtext.natural'
+include ':drkstr.hello.xtext.natural.ide'
+include ':drkstr.hello.xtext.natural.tests'
+include ':drkstr.hello.xtext.natural.ui'
+include ':drkstr.hello.xtext.natural.ui.tests'
 include ':drkstr.hello.xtext.table'
 include ':drkstr.hello.xtext.table.ide'
 include ':drkstr.hello.xtext.table.tests'

@@ -1,0 +1,9 @@
+grammar drkstr.hello.xtext.natural.Natural with org.eclipse.xtext.common.Terminals
+
+generate natural "http://www.hello.drkstr/xtext/natural/Natural"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';

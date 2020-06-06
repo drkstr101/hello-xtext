@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: drkstr.hello.xtext.natural.ide
+Bundle-ManifestVersion: 2
+Bundle-Name: drkstr.hello.xtext.natural.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: drkstr.hello.xtext.natural.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: drkstr.hello.xtext.natural,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
