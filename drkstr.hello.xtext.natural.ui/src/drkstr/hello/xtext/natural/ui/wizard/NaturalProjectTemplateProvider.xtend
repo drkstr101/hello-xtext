@@ -57,13 +57,126 @@ final class HelloWorldProject {
 			projectNatures += #[JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature", XtextProjectHelper.NATURE_ID]
 			builderIds += #[JavaCore.BUILDER_ID, XtextProjectHelper.BUILDER_ID]
 			folders += "src"
-			addFile('''src/«path»/hello.natural''', '''
+			addFile('''src/test/java/«path»/HelloNaturalTest.java''', '''
+				package «projectInfo.projectName»;
+				
+				import io.cucumber.junit.CucumberOptions;
+				import io.cucumber.junit.Cucumber;
+				import org.junit.runner.RunWith;
+				
+				@RunWith(Cucumber.class)
+				@CucumberOptions(plugin = {"pretty"})
+				public class HelloNaturalTest {}
+			''')
+			addFile('''src/test/java/«path»/BellyStepDefinitions.java''', '''
+				package «projectInfo.projectName»;
+				
+				import io.cucumber.java.en.*;
+				
+				public class BellyStepDefinitions {
+				    @Given("I have {int} cukes in my belly")
+				    public void I_have_cukes_in_my_belly(int cukes) {
+				    	// TODO...
+				    }
+				    
+				    @When("I wait {int} hour(s)")
+				    public void i_wait_x_hours(int hours) {
+				    	// TODO...
+				    }
+				    
+				    @Then("my belly should growl")
+				    public void my_belly_should_growl() {
+				    	// TODO...
+				    }
+				}
+			''')
+			addFile('''src/test/resources/«path»/belly.natural''', '''
 				Scenario: Hello, «name»!
-					Given a precondition
-					When something happens
-					Then there should be a result
-					And it should be correct
-					* because I said so
+					Given I have 42 cukes in my belly
+					When I wait 1 hour
+					Then my belly should growl
+			''')
+			addFile('''build.gradle''', '''
+				plugins {
+					id 'java'
+				}
+				
+				ext {
+				    cucumberVersion = '5.6.0'
+				}
+				
+				dependencies {
+				    testImplementation 'io.cucumber:cucumber-java:' + cucumberVersion
+				    testImplementation 'io.cucumber:cucumber-junit:' + cucumberVersion
+				}
+				
+				repositories {
+				    mavenCentral()
+				}
+			''')
+			addFile('''pom.xml''', '''
+				<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+				    <modelVersion>4.0.0</modelVersion>
+				
+				    <groupId>«projectInfo.projectName»</groupId>
+				    <artifactId>«projectInfo.projectName»</artifactId>
+				    <version>1.0.0</version>
+				    <packaging>jar</packaging>
+				    <name>Cucumber-Java Skeleton</name>
+				
+				    <properties>
+				        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+				        <java.version>1.8</java.version>
+				        <junit.version>4.13</junit.version>
+				        <cucumber.version>5.6.0</cucumber.version>
+				        <maven.compiler.version>3.8.1</maven.compiler.version>
+				        <maven.surefire.version>2.22.1</maven.surefire.version>
+				    </properties>
+				
+				    <dependencies>
+				        <dependency>
+				            <groupId>io.cucumber</groupId>
+				            <artifactId>cucumber-java</artifactId>
+				            <version>${cucumber.version}</version>
+				            <scope>test</scope>
+				        </dependency>
+				
+				        <dependency>
+				            <groupId>io.cucumber</groupId>
+				            <artifactId>cucumber-junit</artifactId>
+				            <version>${cucumber.version}</version>
+				            <scope>test</scope>
+				        </dependency>
+				
+				        <dependency>
+				            <groupId>junit</groupId>
+				            <artifactId>junit</artifactId>
+				            <version>${junit.version}</version>
+				            <scope>test</scope>
+				        </dependency>
+				    </dependencies>
+				
+				    <build>
+				        <plugins>
+				            <plugin>
+				                <groupId>org.apache.maven.plugins</groupId>
+				                <artifactId>maven-compiler-plugin</artifactId>
+				                <version>${maven.compiler.version}</version>
+				                <configuration>
+				                    <encoding>UTF-8</encoding>
+				                    <source>${java.version}</source>
+				                    <target>${java.version}</target>
+				                </configuration>
+				            </plugin>
+				            <plugin>
+				                <groupId>org.apache.maven.plugins</groupId>
+				                <artifactId>maven-surefire-plugin</artifactId>
+				                <version>${maven.surefire.version}</version>
+				            </plugin>
+				        </plugins>
+				    </build>
+				</project>
 			''')
 		])
 	}
