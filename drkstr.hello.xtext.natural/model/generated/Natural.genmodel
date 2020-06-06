@@ -10,7 +10,12 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Model/scenarios"/>
     </genClasses>
     <genClasses ecoreClass="Natural.ecore#//Scenario">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//Scenario/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//Scenario/title"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Scenario/steps"/>
+    </genClasses>
+    <genClasses ecoreClass="Natural.ecore#//Step">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//Step/keyword"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//Step/description"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

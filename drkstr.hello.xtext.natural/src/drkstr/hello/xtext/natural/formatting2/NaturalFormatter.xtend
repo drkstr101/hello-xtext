@@ -15,7 +15,7 @@ class NaturalFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(Model model, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (greeting : model.greetings) {
+		for (greeting : model.scenarios) {
 			greeting.format
 		}
 	}
