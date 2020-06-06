@@ -3,7 +3,7 @@
 <plugin>
 	<extension point="org.eclipse.emf.ecore.generated_package">
 		<package
-			uri = "http://www.hello.drkstr/xtext/natural/Natural"
+			uri = "http://www.agileware.org/natural/core"
 			class = "drkstr.hello.xtext.natural.natural.NaturalPackage"
 			genModel = "model/generated/Natural.genmodel" />
 	</extension>
