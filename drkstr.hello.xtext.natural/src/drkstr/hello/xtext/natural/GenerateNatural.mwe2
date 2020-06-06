@@ -55,7 +55,11 @@ Workflow {
 			}
 			projectWizard = {
 				generate = true
-				pluginProject = false
+				generateToolbarButton = true
+			}
+			fileWizard = {
+				generate = true
+				generateToolbarButton = true
 			}
 		}
 	}

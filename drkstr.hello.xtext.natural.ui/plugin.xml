@@ -431,4 +431,105 @@
 			type="text">
 		</fileTypes>
 	</extension>
+	<extension
+		point="org.eclipse.ui.newWizards">
+		<category id="drkstr.hello.xtext.natural.ui.category" name="Natural">
+		</category>
+		<wizard
+			category="drkstr.hello.xtext.natural.ui.category"
+			class="drkstr.hello.xtext.natural.ui.NaturalExecutableExtensionFactory:org.eclipse.xtext.ui.wizard.template.TemplateNewProjectWizard"
+			id="drkstr.hello.xtext.natural.ui.wizard.NaturalNewProjectWizard"
+			name="Natural Project"
+			icon="icons/new_Natural_proj.gif"
+			project="true">
+		</wizard>
+	</extension>
+	<extension
+		point="org.eclipse.xtext.ui.projectTemplate">
+		<projectTemplateProvider
+			class="drkstr.hello.xtext.natural.ui.NaturalExecutableExtensionFactory:drkstr.hello.xtext.natural.ui.wizard.NaturalProjectTemplateProvider"
+			grammarName="drkstr.hello.xtext.natural.Natural">
+		</projectTemplateProvider>
+	</extension>
+	<extension
+		point="org.eclipse.ui.perspectiveExtensions">
+		<perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+			<newWizardShortcut id="drkstr.hello.xtext.natural.ui.wizard.NaturalNewProjectWizard"/>
+		</perspectiveExtension>
+		<perspectiveExtension targetID="org.eclipse.jdt.ui.JavaPerspective">
+			<newWizardShortcut id="drkstr.hello.xtext.natural.ui.wizard.NaturalNewProjectWizard"/>
+		</perspectiveExtension>
+	</extension>
+	<extension
+		point="org.eclipse.ui.menus">
+		<menuContribution
+			allPopups="false"
+			locationURI="toolbar:org.eclipse.ui.main.toolbar">
+			<toolbar
+				id="drkstr.hello.xtext.natural.ui.toolbar">
+				<!--
+					For some reason the tooltip is not shown when hovering over the toolbar button
+					See also https://www.eclipse.org/forums/index.php/t/1079111/
+				-->
+				<command
+					commandId="org.eclipse.ui.newWizard"
+					tooltip="Create a new Natural project">
+					<parameter
+						name="newWizardId"
+						value="drkstr.hello.xtext.natural.ui.wizard.NaturalNewProjectWizard">
+					</parameter>
+				</command>
+			</toolbar>
+		</menuContribution>
+	</extension>
+	<extension
+		point="org.eclipse.ui.newWizards">
+		<category id="drkstr.hello.xtext.natural.ui.category" name="Natural">
+		</category>
+		<wizard
+			category="drkstr.hello.xtext.natural.ui.category"
+			class="drkstr.hello.xtext.natural.ui.NaturalExecutableExtensionFactory:org.eclipse.xtext.ui.wizard.template.TemplateNewFileWizard"
+			id="drkstr.hello.xtext.natural.ui.wizard.NaturalNewFileWizard"
+			name="Natural File"
+			icon="icons/new_Natural_file.png">
+		</wizard>
+	</extension>
+	<extension
+		point="org.eclipse.xtext.ui.fileTemplate">
+		<fileTemplateProvider
+			class="drkstr.hello.xtext.natural.ui.NaturalExecutableExtensionFactory:drkstr.hello.xtext.natural.ui.wizard.NaturalFileTemplateProvider"
+			grammarName="drkstr.hello.xtext.natural.Natural">
+		</fileTemplateProvider>
+	</extension>
+	<extension
+		point="org.eclipse.ui.perspectiveExtensions">
+		<perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+			<newWizardShortcut id="drkstr.hello.xtext.natural.ui.wizard.NaturalNewFileWizard"/>
+		</perspectiveExtension>
+		<perspectiveExtension targetID="org.eclipse.jdt.ui.JavaPerspective">
+			<newWizardShortcut id="drkstr.hello.xtext.natural.ui.wizard.NaturalNewFileWizard"/>
+		</perspectiveExtension>
+	</extension>
+	<extension
+		point="org.eclipse.ui.menus">
+		<menuContribution
+			allPopups="false"
+			locationURI="toolbar:org.eclipse.ui.main.toolbar">
+			<toolbar
+				id="drkstr.hello.xtext.natural.ui.toolbar">
+				<!--
+					For some reason the tooltip is not shown when hovering over the toolbar button
+					See also https://www.eclipse.org/forums/index.php/t/1079111/
+				-->
+				<command
+					commandId="org.eclipse.ui.newWizard"
+					tooltip="Create a new Natural file">
+					<parameter
+						name="newWizardId"
+						value="drkstr.hello.xtext.natural.ui.wizard.NaturalNewFileWizard">
+					</parameter>
+				</command>
+			</toolbar>
+		</menuContribution>
+	</extension>
 </plugin>

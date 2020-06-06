@@ -5,8 +5,9 @@ package drkstr.hello.xtext.natural.ui.wizard
 
 
 import org.eclipse.core.runtime.Status
+import org.eclipse.jdt.core.JavaCore
 import org.eclipse.xtext.ui.XtextProjectHelper
-import org.eclipse.xtext.ui.util.ProjectFactory
+import org.eclipse.xtext.ui.util.PluginProjectFactory
 import org.eclipse.xtext.ui.wizard.template.IProjectGenerator
 import org.eclipse.xtext.ui.wizard.template.IProjectTemplateProvider
 import org.eclipse.xtext.ui.wizard.template.ProjectTemplate
@@ -50,11 +51,12 @@ final class HelloWorldProject {
 	}
 
 	override generateProjects(IProjectGenerator generator) {
-		generator.generate(new ProjectFactory => [
+		generator.generate(new PluginProjectFactory => [
 			projectName = projectInfo.projectName
 			location = projectInfo.locationPath
-			projectNatures += XtextProjectHelper.NATURE_ID
-			builderIds += XtextProjectHelper.BUILDER_ID
+			projectNatures += #[JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature", XtextProjectHelper.NATURE_ID]
+			builderIds += #[JavaCore.BUILDER_ID, XtextProjectHelper.BUILDER_ID]
+			folders += "src"
 			addFile('''src/«path»/Model.natural''', '''
 				/*
 				 * This is an example model
