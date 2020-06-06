@@ -4,6 +4,11 @@
 package drkstr.hello.xtext.natural.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
+
+import drkstr.hello.xtext.natural.ui.syntaxcoloring.NaturalHighlightingConfiguration;
+import drkstr.hello.xtext.natural.ui.syntaxcoloring.NaturalSemanticHighlightingCalculator;
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -12,5 +17,13 @@ public class NaturalUiModule extends AbstractNaturalUiModule {
 
 	public NaturalUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+	}
+	
+	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
+		return NaturalHighlightingConfiguration.class;
+	}
+	
+	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
+		return NaturalSemanticHighlightingCalculator.class;
 	}
 }
