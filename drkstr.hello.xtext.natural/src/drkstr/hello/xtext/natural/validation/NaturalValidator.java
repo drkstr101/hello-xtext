@@ -3,23 +3,46 @@
  */
 package drkstr.hello.xtext.natural.validation;
 
+import static drkstr.hello.xtext.natural.natural.NaturalPackage.Literals.MODEL__SCENARIOS;
+import static drkstr.hello.xtext.natural.natural.NaturalPackage.Literals.SCENARIO__STEPS;
+import static drkstr.hello.xtext.natural.natural.NaturalPackage.Literals.SCENARIO__TITLE;
+import static drkstr.hello.xtext.natural.validation.IssueCodes.MISSING_SCENARIOS;
+import static drkstr.hello.xtext.natural.validation.IssueCodes.MISSING_SCENARIO_STEPS;
+import static drkstr.hello.xtext.natural.validation.IssueCodes.MISSING_SCENARIO_TITLE;
+
+import org.eclipse.xtext.validation.Check;
+
+import drkstr.hello.xtext.natural.natural.Model;
+import drkstr.hello.xtext.natural.natural.Scenario;
 
 /**
- * This class contains custom validation rules. 
+ * This class contains custom validation rules.
  *
- * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
+ * See
+ * https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 public class NaturalValidator extends AbstractNaturalValidator {
-	
-//	public static final String INVALID_NAME = "invalidName";
-//
+
 //	@Check
-//	public void checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.getName().charAt(0))) {
-//			warning("Name should start with a capital",
-//					NaturalPackage.Literals.GREETING__NAME,
-//					INVALID_NAME);
+//	public void missingScenarios(Model model) {
+//		if (model.getScenarios().isEmpty()) {
+//			error(MISSING_SCENARIOS.message(), model, MODEL__SCENARIOS, MISSING_SCENARIOS.id());
 //		}
 //	}
-	
+
+	@Check
+	public void missingScenarioSteps(Scenario model) {
+		if (model.getSteps().isEmpty()) {
+			String title = (model.getTitle() == null) ? "" : model.getTitle().trim();
+			error(MISSING_SCENARIO_STEPS.message(title), model, SCENARIO__STEPS, MISSING_SCENARIO_STEPS.id());
+		}
+	}
+
+	@Check
+	public void missingScenarioTitle(Scenario model) {
+		if (model.getTitle() == null || model.getTitle().trim() == "") {
+			warning(MISSING_SCENARIO_TITLE.message(), model, SCENARIO__TITLE, MISSING_SCENARIO_TITLE.id());
+		}
+	}
+
 }
