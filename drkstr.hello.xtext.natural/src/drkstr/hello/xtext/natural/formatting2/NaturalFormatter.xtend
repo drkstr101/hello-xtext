@@ -5,6 +5,8 @@ package drkstr.hello.xtext.natural.formatting2
 
 import com.google.inject.Inject
 import drkstr.hello.xtext.natural.natural.Model
+import drkstr.hello.xtext.natural.natural.Scenario
+import drkstr.hello.xtext.natural.natural.Step
 import drkstr.hello.xtext.natural.services.NaturalGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
@@ -14,11 +16,28 @@ class NaturalFormatter extends AbstractFormatter2 {
 	@Inject extension NaturalGrammarAccess
 
 	def dispatch void format(Model model, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (greeting : model.scenarios) {
-			greeting.format
+		println(textRegionAccess)
+		
+		for (s : model.scenarios) {
+			s.format()
+		}
+		
+		println(document)
+	}
+
+	def dispatch void format(Scenario model, extension IFormattableDocument document) {
+		// Format steps
+		val begin = model.regionFor.ruleCall(scenarioAccess.EOLTerminalRuleCall_3)
+		val end = model.steps.last.regionFor.ruleCall(stepAccess.EOLTerminalRuleCall_2)
+		interior(begin, end)[indent]
+
+		for (s : model.steps) {
+			s.format()
+			s.prepend[indent]
 		}
 	}
-	
-	// TODO: implement for 
+
+	def dispatch void format(Step model, extension IFormattableDocument document) {
+		// TODO..
+	}
 }
