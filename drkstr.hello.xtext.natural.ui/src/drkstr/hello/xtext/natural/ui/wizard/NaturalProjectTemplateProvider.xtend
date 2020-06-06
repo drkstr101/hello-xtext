@@ -57,11 +57,13 @@ final class HelloWorldProject {
 			projectNatures += #[JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature", XtextProjectHelper.NATURE_ID]
 			builderIds += #[JavaCore.BUILDER_ID, XtextProjectHelper.BUILDER_ID]
 			folders += "src"
-			addFile('''src/«path»/Model.natural''', '''
-				/*
-				 * This is an example model
-				 */
-				Hello «name»!
+			addFile('''src/«path»/hello.natural''', '''
+				Scenario: Hello, «name»!
+					Given a precondition
+					When something happens
+					Then there should be a result
+					And it should be correct
+					* because I said so
 			''')
 		])
 	}

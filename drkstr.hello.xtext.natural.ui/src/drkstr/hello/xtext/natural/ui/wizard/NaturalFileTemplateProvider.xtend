@@ -25,10 +25,12 @@ final class HelloWorldFile {
 
 	override generateFiles(IFileGenerator generator) {
 		generator.generate('''«folder»/«name».natural''', '''
-			/*
-			 * This is an example model
-			 */
-			Hello «helloName»!
+			Scenario: Hello, «helloName»!
+				Given a precondition
+				When something happens
+				Then there should be a result
+				And it should be correct
+				* because I said so
 		''')
 	}
 }
