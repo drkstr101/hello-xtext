@@ -18,7 +18,11 @@ Require-Bundle: drkstr.hello.xtext.natural,
  org.eclipse.xtext.builder
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: drkstr.hello.xtext.natural.ui.internal,
- drkstr.hello.xtext.natural.ui.contentassist,
- drkstr.hello.xtext.natural.ui.quickfix
+Export-Package: drkstr.hello.xtext.natural.ui.contentassist;
+  uses:="org.eclipse.emf.ecore,
+   org.eclipse.xtext.ui.editor.contentassist,
+   org.eclipse.xtext,
+   org.eclipse.xtext.common.ui.contentassist",
+ drkstr.hello.xtext.natural.ui.internal;uses:="org.osgi.framework,com.google.inject,org.eclipse.ui.plugin",
+ drkstr.hello.xtext.natural.ui.quickfix;uses:="org.eclipse.xtext.ui.editor.quickfix"
 Bundle-Activator: drkstr.hello.xtext.natural.ui.internal.NaturalActivator
