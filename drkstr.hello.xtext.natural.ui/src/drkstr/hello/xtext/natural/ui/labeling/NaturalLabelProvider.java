@@ -3,9 +3,13 @@
  */
 package drkstr.hello.xtext.natural.ui.labeling;
 
-import com.google.inject.Inject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
+
+import com.google.inject.Inject;
+
+import drkstr.hello.xtext.natural.natural.Scenario;
+import drkstr.hello.xtext.natural.natural.Step;
 
 /**
  * Provides labels for EObjects.
@@ -19,13 +23,19 @@ public class NaturalLabelProvider extends DefaultEObjectLabelProvider {
 		super(delegate);
 	}
 
-	// Labels and icons can be computed like this:
+	String text(Scenario model) {
+		return model.getTitle() == null ? "Scenario" : model.getTitle();
+	}
+
+	String image(Scenario model) {
+		return "scenario.png";
+	}
 	
-//	String text(Greeting ele) {
-//		return "A greeting to " + ele.getName();
-//	}
-//
-//	String image(Greeting ele) {
-//		return "Greeting.gif";
-//	}
+	String text(Step model) {
+		return model.getKeyword() + " " + model.getDescription().trim();
+	}
+
+	String image(Step model) {
+		return "step.gif";
+	}
 }

@@ -5,11 +5,16 @@ package drkstr.hello.xtext.natural.ui.outline;
 
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 
+import drkstr.hello.xtext.natural.natural.Step;
+
 /**
  * Customization of the default outline structure.
  *
- * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#outline
+ * See
+ * https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#outline
  */
 public class NaturalOutlineTreeProvider extends DefaultOutlineTreeProvider {
-
+	protected boolean _isLeaf(Step model) {
+		return true;
+	}
 }
