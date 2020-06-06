@@ -5,8 +5,10 @@ package drkstr.hello.xtext.natural.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.ui.editor.folding.IFoldingRegionProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 
+import drkstr.hello.xtext.natural.ui.folding.NaturalFoldingRegionProvider;
 import drkstr.hello.xtext.natural.ui.syntaxcoloring.NaturalHighlightingConfiguration;
 import drkstr.hello.xtext.natural.ui.syntaxcoloring.NaturalSemanticHighlightingCalculator;
 
@@ -25,5 +27,9 @@ public class NaturalUiModule extends AbstractNaturalUiModule {
 	
 	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
 		return NaturalSemanticHighlightingCalculator.class;
+	}
+	
+	public Class<? extends IFoldingRegionProvider> bindIFoldingRegionProvider() {
+		return NaturalFoldingRegionProvider.class;
 	}
 }
