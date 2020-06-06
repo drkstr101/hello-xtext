@@ -3,7 +3,9 @@ grammar drkstr.hello.xtext.natural.Natural with org.eclipse.xtext.common.Termina
 generate natural "http://www.hello.drkstr/xtext/natural/Natural"
 
 Model:
-	greetings+=Greeting*;
+	scenarios+=Scenario*
+;
 	
-Greeting:
-	'Hello' name=ID '!';
+Scenario:
+	'Hello' name=ID '!'
+;
