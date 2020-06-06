@@ -53,6 +53,10 @@ Workflow {
 			parserGenerator = {
 				debugGrammar = true
 			}
+			projectWizard = {
+				generate = true
+				pluginProject = false
+			}
 		}
 	}
 }
