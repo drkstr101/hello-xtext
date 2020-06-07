@@ -56,6 +56,7 @@ DESCRIPTION_LITERAL: PLACEHOLDER
 	| NUMBER
 	| STRING
 	| WORD
+	| PUNCTUATION
 	| ANY_OTHER
 ;
 
@@ -122,9 +123,11 @@ terminal STRING returns ecore::EString:
 	    | "'" ( '\\'('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|"'") )* "'"
 ;
 
-terminal PUNCTUATION: ASCII_SYMBOLS;
+terminal PUNCTUATION: ASCII_SYMBOLS 
+	| '...'
+;
 
-terminal EOL: ('\r'? '\n')+;
+terminal EOL: ('\r'? '\n')+ | EOF;
 
 terminal WS: (SPACE | '\t');
 
