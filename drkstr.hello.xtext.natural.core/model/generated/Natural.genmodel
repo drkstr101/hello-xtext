@@ -16,6 +16,20 @@
     <genClasses ecoreClass="Natural.ecore#//Step">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//Step/keyword"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//Step/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Step/table"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Step/document"/>
+    </genClasses>
+    <genClasses ecoreClass="Natural.ecore#//Table">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Table/rows"/>
+    </genClasses>
+    <genClasses ecoreClass="Natural.ecore#//TableRow">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//TableRow/cols"/>
+    </genClasses>
+    <genClasses ecoreClass="Natural.ecore#//TableCol">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//TableCol/cell"/>
+    </genClasses>
+    <genClasses ecoreClass="Natural.ecore#//DocString">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//DocString/text"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

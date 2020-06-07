@@ -18,16 +18,15 @@ Scenario: {Scenario}
 	steps+=Step*
 ;
 
-// ----------------------------------------------------------
-//
-// Step Elements
-//
-// ----------------------------------------------------------
+
+// --------------------------------------
+// Step
+// --------------------------------------
 
 Step:
 	keyword=STEP_KEYWORD
-	description=StepDescription
-	EOL
+	description=StepDescription EOL
+	(table=Table | document=DocString)?
 ;
 
 STEP_KEYWORD: ANY_KEYWORD
@@ -45,26 +44,58 @@ terminal THEN_KEYWORD: 'Then';
 terminal AND_KEYWORD: 'And';
 terminal BUT_KEYWORD: 'But';
 
+// --------------------------------------
+// StepDescription
+// --------------------------------------
+
 StepDescription returns ecore::EString:
  	DESCRIPTION_LITERAL+
 ;
 
-DESCRIPTION_LITERAL: PLACEHOLDER_WORD
+DESCRIPTION_LITERAL: PLACEHOLDER
 	| NUMBER
 	| STRING
 	| WORD
 	| ANY_OTHER
 ;
 
-terminal PLACEHOLDER_WORD:
+terminal PLACEHOLDER:
 	('<' WORD '>')
 	| ('[' WORD ']')
+;
+
+// --------------------------------------
+// Table
+// --------------------------------------
+
+Table:
+	rows+=TableRow+
+;
+
+TableRow:
+	cols+=TableCol+ '|' EOL
+;
+
+TableCol:
+	cell=TABLE_CELL
+;
+
+terminal TABLE_CELL: '|' !('|' | '\n' | '\r')*;
+
+// --------------------------------------
+// DocString
+// --------------------------------------
+
+DocString: {DocString}
+	(('"""' EOL (text=Text EOL)? '"""')
+		| ("'''" EOL (text=Text EOL)? "'''"))
+	EOL
 ;
 
 
 // ----------------------------------------------------------
 //
-// Common Text
+// Text Model
 //
 // ----------------------------------------------------------
 
