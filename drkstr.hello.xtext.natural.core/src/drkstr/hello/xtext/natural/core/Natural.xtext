@@ -11,6 +11,7 @@ generate natural "http://www.agileware.org/natural/core"
 
 Model: {Model}
 	('\r'? '\n')*
+	(narrative=Text EOL)?
 	scenarios+=Scenario*
 ;
 	

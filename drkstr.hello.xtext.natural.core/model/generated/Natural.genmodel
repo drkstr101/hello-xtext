@@ -7,6 +7,7 @@
   <genPackages prefix="Natural" basePackage="drkstr.hello.xtext.natural.core" disposableProviderFactory="true"
       fileExtensions="natural" ecorePackage="Natural.ecore#/">
     <genClasses ecoreClass="Natural.ecore#//Model">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//Model/narrative"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Model/scenarios"/>
     </genClasses>
     <genClasses ecoreClass="Natural.ecore#//Scenario">
