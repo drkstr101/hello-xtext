@@ -15,9 +15,29 @@ Model: {Model}
 ;
 	
 Scenario: {Scenario}
+	meta=Meta?
 	'Scenario:' title=Text? EOL
 	steps+=Step*
 ;
+
+// --------------------------------------
+// Meta
+// --------------------------------------
+
+Meta:
+	tags+=MetaTag
+	(EOL tags+=MetaTag)*
+	EOL
+;
+
+MetaTag:
+	'@' key=MetaKey
+	(':'? value=MetaValue)?
+;
+
+MetaKey: WORD;
+
+MetaValue: TEXT_LITERAL+;
 
 
 // --------------------------------------

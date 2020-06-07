@@ -27,7 +27,7 @@ class NaturalFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(Scenario model, extension IFormattableDocument document) {
 		// Format steps
-		val begin = model.regionFor.ruleCall(scenarioAccess.EOLTerminalRuleCall_3)
+		val begin = model.regionFor.ruleCall(scenarioAccess.EOLTerminalRuleCall_4)
 		val end = model.steps.last.regionFor.ruleCall(stepAccess.EOLTerminalRuleCall_2)
 		interior(begin, end)[indent]
 

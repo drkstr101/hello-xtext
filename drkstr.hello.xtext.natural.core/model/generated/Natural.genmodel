@@ -10,8 +10,16 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Model/scenarios"/>
     </genClasses>
     <genClasses ecoreClass="Natural.ecore#//Scenario">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Scenario/meta"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//Scenario/title"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Scenario/steps"/>
+    </genClasses>
+    <genClasses ecoreClass="Natural.ecore#//Meta">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Meta/tags"/>
+    </genClasses>
+    <genClasses ecoreClass="Natural.ecore#//MetaTag">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//MetaTag/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//MetaTag/value"/>
     </genClasses>
     <genClasses ecoreClass="Natural.ecore#//Step">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//Step/keyword"/>
