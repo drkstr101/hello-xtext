@@ -21,7 +21,7 @@ import com.google.inject.Inject;
 import drkstr.hello.xtext.natural.core.natural.Scenario;
 import drkstr.hello.xtext.natural.core.natural.Step;
 import drkstr.hello.xtext.natural.stepmatcher.IStepMatcher;
-import drkstr.hello.xtext.natural.stepmatcher.StepdefMatch;
+import drkstr.hello.xtext.natural.stepmatcher.MatchEntry;
 
 /**
  * This class contains custom validation rules.
@@ -33,7 +33,7 @@ public class NaturalValidator extends AbstractNaturalValidator {
 
 	@Inject
 	private IStepMatcher stepMatcher;
-	
+
 //	@Check
 //	public void missingScenarios(Model model) {
 //		if (model.getScenarios().isEmpty()) {
@@ -55,21 +55,21 @@ public class NaturalValidator extends AbstractNaturalValidator {
 			warning(MISSING_SCENARIO_TITLE.message(), model, SCENARIO__TITLE, MISSING_SCENARIO_TITLE.id());
 		}
 	}
-	
+
 	@Check(CheckType.NORMAL)
 	public void invalidStepdef(Step model) {
-		List<StepdefMatch> matches = stepMatcher.findMatches(model.getKeyword(), model.getDescription());
-		if (matches.size() == 0) {
-			warning(MISSING_STEPDEF.message(model.getKeyword(), 
-					model.getDescription()),
-					STEP__DESCRIPTION, 
-					MISSING_STEPDEF.id());
-		}
-		else if (matches.size() > 1) {
-			warning(MULTIPLE_STEPDEF.message(model.getKeyword(), 
-					model.getDescription()),
-					STEP__DESCRIPTION, 
-					MULTIPLE_STEPDEF.id());
+		System.out.println("NaturalValidator.invalidStepdef(" + model + ")");
+		
+		// Only check for matching step definitions when feature is activated by the UI
+		if (stepMatcher.isEnabled()) {
+			List<MatchEntry> matches = stepMatcher.findMatches(model.getKeyword(), model.getDescription());
+			if (matches.size() == 0) {
+				warning(MISSING_STEPDEF.message(model.getKeyword(), model.getDescription()), STEP__DESCRIPTION,
+						MISSING_STEPDEF.id());
+			} else if (matches.size() > 1) {
+				warning(MULTIPLE_STEPDEF.message(model.getKeyword(), model.getDescription()), STEP__DESCRIPTION,
+						MULTIPLE_STEPDEF.id());
+			}
 		}
 	}
 

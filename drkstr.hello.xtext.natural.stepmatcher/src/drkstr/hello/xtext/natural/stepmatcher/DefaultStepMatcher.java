@@ -6,7 +6,12 @@ import java.util.List;
 public class DefaultStepMatcher implements IStepMatcher {
 
 	@Override
-	public List<StepdefMatch> findMatches(String keyword, String description) {
+	public boolean isEnabled() {
+		return false;
+	}
+
+	@Override
+	public List<MatchEntry> findMatches(String keyword, String description) {
 		return Collections.emptyList();
 	}
 
