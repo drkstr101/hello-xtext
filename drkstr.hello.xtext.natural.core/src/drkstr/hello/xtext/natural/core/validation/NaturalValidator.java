@@ -3,25 +3,14 @@
  */
 package drkstr.hello.xtext.natural.core.validation;
 
-import static drkstr.hello.xtext.natural.core.validation.IssueCodes.MISSING_SCENARIO_STEPS;
-import static drkstr.hello.xtext.natural.core.validation.IssueCodes.MISSING_SCENARIO_TITLE;
-import static drkstr.hello.xtext.natural.core.validation.IssueCodes.MISSING_STEPDEF;
-import static drkstr.hello.xtext.natural.core.validation.IssueCodes.MULTIPLE_STEPDEF;
 import static drkstr.hello.xtext.natural.core.natural.NaturalPackage.Literals.SCENARIO__STEPS;
 import static drkstr.hello.xtext.natural.core.natural.NaturalPackage.Literals.SCENARIO__TITLE;
-import static drkstr.hello.xtext.natural.core.natural.NaturalPackage.Literals.STEP__DESCRIPTION;
-
-import java.util.List;
+import static drkstr.hello.xtext.natural.core.validation.IssueCodes.MISSING_SCENARIO_STEPS;
+import static drkstr.hello.xtext.natural.core.validation.IssueCodes.MISSING_SCENARIO_TITLE;
 
 import org.eclipse.xtext.validation.Check;
-import org.eclipse.xtext.validation.CheckType;
-
-import com.google.inject.Inject;
 
 import drkstr.hello.xtext.natural.core.natural.Scenario;
-import drkstr.hello.xtext.natural.core.natural.Step;
-import drkstr.hello.xtext.natural.stepmatcher.IStepMatcher;
-import drkstr.hello.xtext.natural.stepmatcher.MatchEntry;
 
 /**
  * This class contains custom validation rules.
@@ -30,16 +19,6 @@ import drkstr.hello.xtext.natural.stepmatcher.MatchEntry;
  * https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 public class NaturalValidator extends AbstractNaturalValidator {
-
-	@Inject
-	private IStepMatcher stepMatcher;
-
-//	@Check
-//	public void missingScenarios(Model model) {
-//		if (model.getScenarios().isEmpty()) {
-//			error(MISSING_SCENARIOS.message(), model, MODEL__SCENARIOS, MISSING_SCENARIOS.id());
-//		}
-//	}
 
 	@Check
 	public void missingScenarioSteps(Scenario model) {
@@ -55,22 +34,4 @@ public class NaturalValidator extends AbstractNaturalValidator {
 			warning(MISSING_SCENARIO_TITLE.message(), model, SCENARIO__TITLE, MISSING_SCENARIO_TITLE.id());
 		}
 	}
-
-	@Check(CheckType.NORMAL)
-	public void invalidStepdef(Step model) {
-		System.out.println("NaturalValidator.invalidStepdef(" + model + ")");
-		
-		// Only check for matching step definitions when feature is activated by the UI
-		if (stepMatcher.isEnabled()) {
-			List<MatchEntry> matches = stepMatcher.findMatches(model.getKeyword(), model.getDescription());
-			if (matches.size() == 0) {
-				warning(MISSING_STEPDEF.message(model.getKeyword(), model.getDescription()), STEP__DESCRIPTION,
-						MISSING_STEPDEF.id());
-			} else if (matches.size() > 1) {
-				warning(MULTIPLE_STEPDEF.message(model.getKeyword(), model.getDescription()), STEP__DESCRIPTION,
-						MULTIPLE_STEPDEF.id());
-			}
-		}
-	}
-
 }
