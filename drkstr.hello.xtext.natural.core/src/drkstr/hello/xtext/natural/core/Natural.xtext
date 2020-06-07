@@ -35,6 +35,7 @@ STEP_KEYWORD: ANY_KEYWORD
 	| WHEN_KEYWORD
 	| THEN_KEYWORD
 	| AND_KEYWORD
+	| BUT_KEYWORD
 ;
 
 terminal ANY_KEYWORD: '*';
@@ -42,6 +43,7 @@ terminal GIVEN_KEYWORD: 'Given';
 terminal WHEN_KEYWORD: 'When';
 terminal THEN_KEYWORD: 'Then';
 terminal AND_KEYWORD: 'And';
+terminal BUT_KEYWORD: 'But';
 
 StepDescription returns ecore::EString:
  	DESCRIPTION_LITERAL+
