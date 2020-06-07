@@ -21,4 +21,4 @@ Import-Package: org.apache.commons.logging,
  org.junit.runners.model,
  org.hamcrest
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: drkstr.hello.xtext.natural.core.tests;x-internal=true
+Export-Package: drkstr.hello.xtext.natural.core.tests;x-internal=true;uses:="org.hamcrest"
