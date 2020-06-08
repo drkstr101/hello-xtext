@@ -11,6 +11,8 @@ import drkstr.hello.xtext.natural.core.services.NaturalGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
 
+import static drkstr.hello.xtext.natural.core.natural.NaturalPackage.Literals.*;
+
 class NaturalFormatter extends AbstractFormatter2 {
 	
 	@Inject extension NaturalGrammarAccess
@@ -27,8 +29,10 @@ class NaturalFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(Scenario model, extension IFormattableDocument document) {
 		// Format steps
-		val begin = model.regionFor.ruleCall(scenarioAccess.EOLTerminalRuleCall_4)
-		val end = model.steps.last.regionFor.ruleCall(stepAccess.EOLTerminalRuleCall_3)
+		val begin = (model.title === null)? 
+				model.regionFor.ruleCall(scenarioAccess.EOLTerminalRuleCall_3_1)
+				: model.regionFor.feature(SCENARIO__TITLE)
+		val end = model.steps.last.regionFor.ruleCall(stepAccess.EOLTerminalRuleCall_2_1)
 		interior(begin, end)[indent]
 
 		for (s : model.steps) {
