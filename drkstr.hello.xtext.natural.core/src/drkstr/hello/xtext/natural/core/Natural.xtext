@@ -65,7 +65,7 @@ terminal THEN_KEYWORD: 'Then';
 terminal AND_KEYWORD: 'And';
 terminal BUT_KEYWORD: 'But';
 
-StepDescription returns ecore::EString:
+StepDescription:
  	DESCRIPTION_LITERAL+
 ;
 
@@ -128,11 +128,6 @@ TEXT_LITERAL: WORD
 	| ANY_OTHER
 ;
 
-terminal WORD returns ecore::EString: 
-	(LETTER | DIGIT)
-	(LETTER | DIGIT | '_' | '-' | '.' )*
-;
-
 terminal NUMBER returns ecore::EDouble:
     '-'? ('0'..'9')+ ('.' ('0'..'9')+)?
 ;
@@ -141,6 +136,12 @@ terminal STRING returns ecore::EString:
     '"' ( '\\'('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|'"') )* '"' 
 	    | "'" ( '\\'('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|"'") )* "'"
 ;
+
+terminal WORD: 
+	(LETTER | DIGIT)
+	(LETTER | DIGIT | '_' | '-' | '.' )*
+;
+
 
 terminal PUNCTUATION: ASCII_SYMBOLS 
 	| '...'
