@@ -5,7 +5,6 @@ package drkstr.hello.xtext.natural.core.generator
 
 import drkstr.hello.xtext.natural.core.natural.Model
 import drkstr.hello.xtext.natural.core.natural.Scenario
-import drkstr.hello.xtext.natural.core.natural.Step
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
@@ -30,12 +29,7 @@ class NaturalGenerator extends AbstractGenerator {
 
 	static def serialize(Scenario model) '''
 		Scenario: «model.title»
-		«FOR s : model.steps»
-			«serialize(s)»
-		«ENDFOR»
+		«model.narrative»
 	'''
 
-	static def serialize(Step model) '''
-		«model.keyword» «model.description»
-	'''
 }

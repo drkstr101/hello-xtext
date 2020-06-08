@@ -7,13 +7,12 @@
   <genPackages prefix="Natural" basePackage="drkstr.hello.xtext.natural.core" disposableProviderFactory="true"
       fileExtensions="natural" ecorePackage="Natural.ecore#/">
     <genClasses ecoreClass="Natural.ecore#//Model">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//Model/narrative"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Model/scenarios"/>
     </genClasses>
     <genClasses ecoreClass="Natural.ecore#//Scenario">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Scenario/meta"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//Scenario/title"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Scenario/steps"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//Scenario/narrative"/>
     </genClasses>
     <genClasses ecoreClass="Natural.ecore#//Meta">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Meta/tags"/>
@@ -21,24 +20,6 @@
     <genClasses ecoreClass="Natural.ecore#//MetaTag">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//MetaTag/key"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//MetaTag/value"/>
-    </genClasses>
-    <genClasses ecoreClass="Natural.ecore#//Step">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//Step/keyword"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//Step/description"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Step/table"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Step/document"/>
-    </genClasses>
-    <genClasses ecoreClass="Natural.ecore#//Table">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//Table/rows"/>
-    </genClasses>
-    <genClasses ecoreClass="Natural.ecore#//TableRow">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Natural.ecore#//TableRow/cols"/>
-    </genClasses>
-    <genClasses ecoreClass="Natural.ecore#//TableCol">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//TableCol/cell"/>
-    </genClasses>
-    <genClasses ecoreClass="Natural.ecore#//DocString">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Natural.ecore#//DocString/text"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

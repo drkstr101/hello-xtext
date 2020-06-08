@@ -4,7 +4,6 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 generate natural "http://www.agileware.org/natural/core"
 
 Model: {Model}
-	narrative=Text?
 	scenarios+=Scenario*
 ;
 
@@ -14,9 +13,10 @@ Model: {Model}
 // --------------------------------------
 
 Scenario: {Scenario}
-	meta=Meta?
-	'Scenario:' (title=Text | EOL)
-	steps+=Step*
+	(meta=Meta EOL+)?
+	'Scenario:' title=Title? EOL+
+	narrative=Text?
+//	steps+=Step*
 ;
 
 
@@ -26,8 +26,7 @@ Scenario: {Scenario}
 
 Meta: {Meta}
 	tags+=MetaTag
-	(EOL? tags+=MetaTag)*
-	EOL
+	(EOL* tags+=MetaTag)*
 ;
 
 MetaTag: {MetaTag}
@@ -44,73 +43,73 @@ MetaValue: TEXT_LITERAL+;
 // Step
 // --------------------------------------
 
-Step: {Step}
-	keyword=STEP_KEYWORD
-	(description=StepDescription EOL)
-	(table=Table | document=DocString)?
-;
-
-STEP_KEYWORD: ANY_KEYWORD
-	| GIVEN_KEYWORD
-	| WHEN_KEYWORD
-	| THEN_KEYWORD
-	| AND_KEYWORD
-	| BUT_KEYWORD
-;
-
-terminal ANY_KEYWORD: '*';
-terminal GIVEN_KEYWORD: 'Given';
-terminal WHEN_KEYWORD: 'When';
-terminal THEN_KEYWORD: 'Then';
-terminal AND_KEYWORD: 'And';
-terminal BUT_KEYWORD: 'But';
-
-StepDescription:
- 	DESCRIPTION_LITERAL+
-;
-
-DESCRIPTION_LITERAL: PLACEHOLDER
-	| NUMBER
-	| STRING
-	| WORD
-	| PUNCTUATION
-	| ANY_OTHER
-;
-
-terminal PLACEHOLDER:
-	('<' WORD '>')
-	| ('[' WORD ']')
-;
+//Step: {Step}
+//	keyword=STEP_KEYWORD
+//	(description=StepDescription EOL)
+//	(table=Table | document=DocString)?
+//;
+//
+//STEP_KEYWORD: ANY_KEYWORD
+//	| GIVEN_KEYWORD
+//	| WHEN_KEYWORD
+//	| THEN_KEYWORD
+//	| AND_KEYWORD
+//	| BUT_KEYWORD
+//;
+//
+//terminal ANY_KEYWORD: '*';
+//terminal GIVEN_KEYWORD: 'Given';
+//terminal WHEN_KEYWORD: 'When';
+//terminal THEN_KEYWORD: 'Then';
+//terminal AND_KEYWORD: 'And';
+//terminal BUT_KEYWORD: 'But';
+//
+//StepDescription:
+// 	DESCRIPTION_LITERAL+
+//;
+//
+//DESCRIPTION_LITERAL: PLACEHOLDER
+//	| NUMBER
+//	| STRING
+//	| WORD
+//	| PUNCTUATION
+//	| ANY_OTHER
+//;
+//
+//terminal PLACEHOLDER:
+//	('<' WORD '>')
+//	| ('[' WORD ']')
+//;
 
 
 // --------------------------------------
 // Table
 // --------------------------------------
 
-Table: {Table}
-	rows+=TableRow+
-;
-
-TableRow: {TableRow}
-	cols+=TableCol+ '|' EOL
-;
-
-TableCol: {TableCol}
-	cell=TABLE_CELL
-;
-
-terminal TABLE_CELL: '|' !('|' | '\n' | '\r')*;
+//Table: {Table}
+//	rows+=TableRow+
+//;
+//
+//TableRow: {TableRow}
+//	cols+=TableCol+ '|' EOL
+//;
+//
+//TableCol: {TableCol}
+//	cell=TABLE_CELL
+//;
+//
+//terminal TABLE_CELL: '|' !('|' | '\n' | '\r')*;
 
 
 // --------------------------------------
 // DocString
 // --------------------------------------
 
-DocString: {DocString}
-	(('"""' EOL text=Text? '"""')
-		| ("'''" EOL text=Text? "'''"))
-	EOL
-;
+//DocString: {DocString}
+//	(('"""' EOL text=Text? '"""')
+//		| ("'''" EOL text=Text? "'''"))
+//	EOL
+//;
 
 
 // ----------------------------------------------------------
@@ -119,11 +118,17 @@ DocString: {DocString}
 //
 // ----------------------------------------------------------
 
+Title:
+	TEXT_LITERAL+
+;
+
 Text:
-	(TEXT_LITERAL TEXT_LITERAL* EOL)+
+	(TEXT_LITERAL TEXT_LITERAL* EOL+ WS*)+
 ;
 
 TEXT_LITERAL: WORD
+	| NUMBER
+	| STRING
 	| PUNCTUATION
 	| ANY_OTHER
 ;
@@ -147,7 +152,8 @@ terminal PUNCTUATION: ASCII_SYMBOLS
 	| '...'
 ;
 
-terminal EOL: ('\r'? '\n')+ | EOF;
+//terminal EOL: ('\r'? '\n')+  | EOF;
+terminal EOL: ('\r'? '\n');
 
 terminal WS: (SPACE | '\t');
 

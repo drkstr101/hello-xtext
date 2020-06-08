@@ -5,13 +5,9 @@ package drkstr.hello.xtext.natural.core.formatting2
 
 import com.google.inject.Inject
 import drkstr.hello.xtext.natural.core.natural.Model
-import drkstr.hello.xtext.natural.core.natural.Scenario
-import drkstr.hello.xtext.natural.core.natural.Step
 import drkstr.hello.xtext.natural.core.services.NaturalGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
-
-import static drkstr.hello.xtext.natural.core.natural.NaturalPackage.Literals.*;
 
 class NaturalFormatter extends AbstractFormatter2 {
 	
@@ -19,29 +15,5 @@ class NaturalFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(Model model, extension IFormattableDocument document) {
 		println(textRegionAccess)
-		
-		for (s : model.scenarios) {
-			s.format()
-		}
-		
-		println(document)
-	}
-
-	def dispatch void format(Scenario model, extension IFormattableDocument document) {
-		// Format steps
-		val begin = (model.title === null)? 
-				model.regionFor.ruleCall(scenarioAccess.EOLTerminalRuleCall_3_1)
-				: model.regionFor.feature(SCENARIO__TITLE)
-		val end = model.steps.last.regionFor.ruleCall(stepAccess.EOLTerminalRuleCall_2_1)
-		interior(begin, end)[indent]
-
-		for (s : model.steps) {
-			s.format()
-			s.prepend[indent]
-		}
-	}
-
-	def dispatch void format(Step model, extension IFormattableDocument document) {
-		// TODO..
 	}
 }

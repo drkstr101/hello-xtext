@@ -3,9 +3,7 @@
  */
 package drkstr.hello.xtext.natural.core.validation;
 
-import static drkstr.hello.xtext.natural.core.natural.NaturalPackage.Literals.SCENARIO__STEPS;
 import static drkstr.hello.xtext.natural.core.natural.NaturalPackage.Literals.SCENARIO__TITLE;
-import static drkstr.hello.xtext.natural.core.validation.IssueCodes.MISSING_SCENARIO_STEPS;
 import static drkstr.hello.xtext.natural.core.validation.IssueCodes.MISSING_SCENARIO_TITLE;
 
 import org.eclipse.xtext.validation.Check;
@@ -20,13 +18,13 @@ import drkstr.hello.xtext.natural.core.natural.Scenario;
  */
 public class NaturalValidator extends AbstractNaturalValidator {
 
-	@Check
-	public void missingScenarioSteps(Scenario model) {
-		if (model.getSteps().isEmpty()) {
-			String title = (model.getTitle() == null) ? "" : model.getTitle().trim();
-			error(MISSING_SCENARIO_STEPS.message(title), model, SCENARIO__STEPS, MISSING_SCENARIO_STEPS.id());
-		}
-	}
+//	@Check
+//	public void missingScenarioSteps(Scenario model) {
+//		if (model.getSteps().isEmpty()) {
+//			String title = (model.getTitle() == null) ? "" : model.getTitle().trim();
+//			error(MISSING_SCENARIO_STEPS.message(title), model, SCENARIO__STEPS, MISSING_SCENARIO_STEPS.id());
+//		}
+//	}
 
 	@Check
 	public void missingScenarioTitle(Scenario model) {
