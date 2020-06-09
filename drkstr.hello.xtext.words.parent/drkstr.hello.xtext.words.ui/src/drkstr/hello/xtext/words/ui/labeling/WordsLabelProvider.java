@@ -3,9 +3,12 @@
  */
 package drkstr.hello.xtext.words.ui.labeling;
 
-import com.google.inject.Inject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
+
+import com.google.inject.Inject;
+
+import drkstr.hello.xtext.words.words.Paragraph;
 
 /**
  * Provides labels for EObjects.
@@ -18,14 +21,16 @@ public class WordsLabelProvider extends DefaultEObjectLabelProvider {
 	public WordsLabelProvider(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
-
-	// Labels and icons can be computed like this:
 	
-//	String text(Greeting ele) {
-//		return "A greeting to " + ele.getName();
-//	}
-//
-//	String image(Greeting ele) {
-//		return "Greeting.gif";
-//	}
+	// --------------------------------------
+	// Paragraph
+	// --------------------------------------
+	
+	String text(Paragraph ele) {
+		return "Paragraph";
+	}
+
+	String image(Paragraph ele) {
+		return "paragraph.png";
+	}
 }
