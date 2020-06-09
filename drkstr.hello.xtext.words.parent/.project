@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>drkstr.hello.xtext.words.parent</name>
+	<comment></comment>
+	<projects>
+		<project>drkstr.hello.xtext.words</project>
+		<project>drkstr.hello.xtext.words.ide</project>
+		<project>drkstr.hello.xtext.words.target</project>
+		<project>drkstr.hello.xtext.words.tests</project>
+		<project>drkstr.hello.xtext.words.ui</project>
+		<project>drkstr.hello.xtext.words.ui.tests</project>
+		<project>drkstr.hello.xtext.words.web</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.m2e.core.maven2Nature</nature>
+	</natures>
+</projectDescription>
