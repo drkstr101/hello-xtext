@@ -4,12 +4,28 @@
 package drkstr.hello.xtext.words.ui.outline;
 
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
+import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
+
+import drkstr.hello.xtext.words.words.Paragraph;
+import drkstr.hello.xtext.words.words.Section;
+import drkstr.hello.xtext.words.words.WordsModel;
 
 /**
  * Customization of the default outline structure.
  *
- * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#outline
+ * See
+ * https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#outline
  */
 public class WordsOutlineTreeProvider extends DefaultOutlineTreeProvider {
+
+	protected void _createChildren(DocumentRootNode parentNode, WordsModel model) {
+		for (Section section : model.getSections()) {
+			createNode(parentNode, section);
+		}
+	}
+
+	protected boolean _isLeaf(Paragraph feature) {
+		return true;
+	}
 
 }
